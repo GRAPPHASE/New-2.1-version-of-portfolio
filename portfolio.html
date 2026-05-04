@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Creative Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0d0d;
+  --surface: #161616;
+  --surface2: #1e1e1e;
+  --border: #2a2a2a;
+  --accent: #c8a97e;
+  --accent2: #e8d5b5;
+  --text: #f0ece4;
+  --text-dim: #888;
+  --text-mute: #555;
+  --col-w: 280px;
+  --gap: 14px;
+  --radius: 12px;
+  --nav-h: 64px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(13,13,13,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  z-index: 100;
+  gap: 48px;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+nav a:hover, nav a.active { color: var(--accent); }
+nav a:hover::after, nav a.active::after { transform: scaleX(1); }
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+}
+
+/* ─── HERO / PROFILE ─── */
+#home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(200,169,126,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 30%, rgba(200,169,126,0.04) 0%, transparent 60%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 48px;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-photo-wrap {
+  position: relative;
+}
+
+.hero-photo-frame {
+  width: 340px;
+  height: 420px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.hero-photo-frame::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(200,169,126,0.3);
+  border-radius: 18px;
+  transform: rotate(2deg);
+}
+
+.hero-photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: -16px;
+  border: 1px solid rgba(200,169,126,0.1);
+  border-radius: 22px;
+  transform: rotate(-1.5deg);
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+  background: linear-gradient(135deg, var(--surface2) 0%, var(--surface) 100%);
+}
+
+.hero-info { padding: 20px 0; }
+
+.hero-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-title {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: 1px solid var(--accent);
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200,169,126,0.25);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ─── ABOUT ─── */
+#about {
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--nav-h) + 80px) 48px 80px;
+}
+
+.about-inner {
+  max-width: 900px;
+  width: 100%;
+}
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 60px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 48px;
+}
+
+.about-text p {
+  color: var(--text-dim);
+  line-height: 1.9;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.skill-tag {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  transition: all 0.25s;
+}
+
+.skill-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.stat-item {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface2);
+  transition: border-color 0.3s;
+}
+
+.stat-item:hover { border-color: var(--accent); }
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-mute);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ─── RESUME ─── */
+#resume {
+  padding: calc(var(--nav-h) + 80px) 48px 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.resume-inner {
+  max-width: 900px;
+  width: 100%;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  margin-top: 48px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -34px;
+  top: 32px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 4px rgba(200,169,126,0.15);
+}
+
+.timeline-item:hover {
+  border-color: rgba(200,169,126,0.4);
+  transform: translateX(4px);
+}
+
+.tl-period {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.tl-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.tl-company {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+}
+
+.tl-desc {
+  font-size: 0.85rem;
+  color: var(--text-mute);
+  line-height: 1.7;
+}
+
+.resume-download {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+/* ─── PORTFOLIO ─── */
+#portfolio {
+  padding: calc(var(--nav-h) + 60px) 48px 80px;
+}
+
+.portfolio-header {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.filter-tab {
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  cursor: pointer;
+  transition: all 0.25s;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.filter-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filter-tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0d0d0d;
+  font-weight: 500;
+}
+
+/* ─── MASONRY ─── */
+.masonry-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  columns: var(--col-w);
+  column-gap: var(--gap);
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: var(--gap);
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: block;
+}
+
+.masonry-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  border-color: rgba(200,169,126,0.3);
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: var(--surface);
+}
+
+/* Video thumbnail cover */
+.masonry-item .video-thumb-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface2);
+}
+
+.masonry-item .video-thumb-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.masonry-item .play-btn-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  transition: background 0.25s;
+}
+
+.masonry-item:hover .play-btn-overlay {
+  background: rgba(0,0,0,0.45);
+}
+
+.play-btn-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(200,169,126,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: transform 0.25s, background 0.25s;
+}
+
+.masonry-item:hover .play-btn-circle {
+  transform: scale(1.1);
+  background: var(--accent);
+}
+
+.play-btn-circle svg {
+  margin-left: 4px;
+}
+
+.masonry-item .img-placeholder {
+  width: 100%;
+  display: block;
+  background: linear-gradient(135deg, var(--surface2), var(--border));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-mute);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 20px;
+}
+
+.masonry-item .item-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 40px 16px 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.masonry-item:hover .item-overlay { opacity: 1; }
+
+.item-cat {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.item-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.item-multi-badge {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+/* ─── LIGHTBOX ─── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s;
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lb-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(12px);
+}
+
+.lb-panel {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  max-width: 900px;
+  width: calc(100% - 40px);
+  max-height: calc(100vh - 80px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.35s;
+}
+
+.lightbox.open .lb-panel {
+  transform: none;
+}
+
+.lb-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.lb-meta { flex: 1; }
+
+.lb-cat {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.lb-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.lb-close {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.lb-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.lb-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px 24px;
+}
+
+/* Swiper area */
+.lb-swiper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  touch-action: pan-y;
+  user-select: none;
+  width: 100%;
+}
+
+.lb-slides-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+}
+
+.lb-slide {
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.lb-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  object-fit: contain;
+  max-height: 60vh;
+  background: var(--surface2);
+}
+
+/* Video iframe embed in lightbox */
+.lb-slide .video-iframe-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+}
+
+.lb-slide .video-iframe-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.lb-slide .slide-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--surface2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-mute);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.lb-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.lb-nav-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s;
+  font-size: 0.9rem;
+}
+
+.lb-nav-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.lb-nav-btn:disabled { opacity: 0.25; cursor: default; }
+
+.lb-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.lb-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.lb-dot.active {
+  background: var(--accent);
+  width: 18px;
+  border-radius: 3px;
+}
+
+.lb-desc {
+  margin-top: 20px;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+/* ─── CONTACT ─── */
+#contact {
+  background: var(--surface);
+  padding: calc(var(--nav-h) + 80px) 48px 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-inner {
+  max-width: 800px;
+  width: 100%;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 48px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.form-input, .form-textarea {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.25s;
+  resize: none;
+  outline: none;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--accent);
+}
+
+.form-textarea { min-height: 120px; }
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.3s;
+}
+
+.contact-item:hover { border-color: rgba(200,169,126,0.3); }
+
+.contact-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(200,169,126,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.contact-item-label {
+  font-size: 0.7rem;
+  color: var(--text-mute);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.contact-item-value {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--text-mute);
+  letter-spacing: 0.06em;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { animation: fadeUp 0.7s ease both; }
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.2s; }
+.fade-up-3 { animation-delay: 0.35s; }
+.fade-up-4 { animation-delay: 0.5s; }
+.fade-up-5 { animation-delay: 0.65s; }
+
+.hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.visible { opacity: 1 !important; transform: none !important; }
+
+
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; gap: 24px; }
+  nav a:not(.nav-logo) { display: none; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; text-align: center; }
+  .hero-photo-frame { width: 240px; height: 300px; }
+  .hero-actions { justify-content: center; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  #about, #resume, #portfolio, #contact { padding: calc(var(--nav-h) + 40px) 24px 60px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Creative.</a>
+  <a href="#home" class="active" onclick="setActive(this)">Home</a>
+  <a href="#about" onclick="setActive(this)">About</a>
+  <a href="#resume" onclick="setActive(this)">Resume</a>
+  <a href="#portfolio" onclick="setActive(this)">Portfolio</a>
+  <a href="#contact" onclick="setActive(this)">Contact</a>
+</nav>
+
+<!-- ─── HOME / PROFILE ─── -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <div class="hero-photo-wrap fade-up fade-up-1">
+      <div class="hero-photo-frame">
+        <img class="hero-photo" src="Picture proflie/my-profile-img.webp" alt="Profile">
+      </div>
+    </div>
+
+    <div class="hero-info">
+      <p class="hero-tag fade-up fade-up-1">✦ Creative Designer</p>
+      <h1 class="hero-name fade-up fade-up-2">
+        <span id="heroName">Apisit <em>Boonluean</em></span>
+      </h1>
+      <p class="hero-title fade-up fade-up-3" id="heroTitle">Graphic Designer · Visual Artist · Video editor</p>
+      <p class="hero-desc fade-up fade-up-4" id="heroDesc">
+        Passionate about crafting meaningful visual experiences that blend aesthetics with purpose. Specializing in brand identities, packaging, and Story telling.
+      </p>
+      <div class="hero-actions fade-up fade-up-5">
+        <a href="#portfolio" class="btn btn-primary">View Portfolio ↓</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="about-inner">
+    <div class="section-label hidden">About Me</div>
+    <h2 class="section-title hidden">Crafting Visual <em style="font-style:italic;color:var(--accent)">Stories</em><br>with Intention</h2>
+
+    <div class="about-grid">
+      <div class="about-text hidden">
+        <p>I'm a multidisciplinary creative with a deep passion for visual communication. My work spans branding, packaging, digital art, and 3D visualization — always driven by the belief that great design solves problems beautifully.</p>
+        <p>With experience across diverse industries, I bring a thoughtful, research-driven approach to every project. Each piece is crafted to resonate emotionally while achieving its strategic goals.</p>
+
+        <div class="skills-list">
+          <span class="skill-tag">Brand Identity</span>
+          <span class="skill-tag">Packaging</span>
+          <span class="skill-tag">Typography</span>
+          <span class="skill-tag">Illustration</span>
+          <span class="skill-tag">3D Modeling</span>
+          <span class="skill-tag">Motion</span>
+          <span class="skill-tag">Art Direction</span>
+          <span class="skill-tag">Print Design</span>
+          <span class="skill-tag">Adobe Suite</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Blender</span>
+        </div>
+      </div>
+
+      <div class="stats-grid hidden">
+        <div class="stat-item">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">124+</div>
+          <div class="stat-label">Projects Done</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">45+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1453</div>
+          <div class="stat-label">Hours Of Support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESUME ─── -->
+<section id="resume">
+  <div class="resume-inner">
+    <div class="section-label hidden">Experience</div>
+    <h2 class="section-title hidden">My Creative <em style="font-style:italic;color:var(--accent)">Journey</em></h2>
+
+    <div class="timeline hidden">
+      <div class="timeline-item">
+        <div class="tl-period">2022 — Present</div>
+        <div class="tl-role">Freelance Graphic Designer</div>
+        <div class="tl-company">Fastwork · Thailand</div>
+        <div class="tl-desc">Executing full-scale brand identity and art direction for international markets. Specializing in visual storytelling through packaging and digital campaigns, while managing cross-functional creative resources to meet fast-paced deadlines.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-period">2020 — 2022</div>
+        <div class="tl-role">Multimedia Specialist</div>
+        <div class="tl-company">Surin Hospital. · Surin, Thailand</div>
+        <div class="tl-desc">Produced comprehensive multimedia content for healthcare communications. Developed visual assets for public health campaigns, internal training materials, and digital signage to enhance patient engagement and hospital branding.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-period">2018 — 2020</div>
+        <div class="tl-role">Junior Graphic Designer</div>
+        <div class="tl-company">Poo Thong Ang Ampil. , Surin, Thailand</div>
+        <div class="tl-desc">Developed visual identities and marketing collateral for local businesses. Created professional logo designs, promotional print materials, and menus that enhanced the brand presence within the local community.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-period">2014 — 2018</div>
+        <div class="tl-role">Retail & Graphic Design Consultant</div>
+        <div class="tl-company">Nang Tob Dee Store. , Surin, Thailand</div>
+        <div class="tl-desc">Provided strategic design consultancy for fashion retail. Directed the visual identity and store layout, including signage, interior branding, and cohesive graphic elements to enhance the shopping experience.</div>
+      </div>
+    </div>
+
+    <div class="resume-download hidden">
+      <a href="#" class="btn btn-ghost" onclick="alert('Resume download would go here')">
+        ↓ Download Full CV
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PORTFOLIO ─── -->
+<section id="portfolio">
+  <div class="portfolio-header hidden">
+    <div class="section-label">Selected Works</div>
+    <h2 class="section-title">Portfolio</h2>
+
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-cat="ALL">All</button>
+      <button class="filter-tab" data-cat="PRODUCT">Product & Packaging</button>
+      <button class="filter-tab" data-cat="BRANDING">Branding & Identity</button>
+      <button class="filter-tab" data-cat="VISUAL">Visual & Graphic Design</button>
+      <button class="filter-tab" data-cat="CREATIVE">Creative Arts</button>
+      <button class="filter-tab" data-cat="DIGITAL">Digital Content</button>
+      <button class="filter-tab" data-cat="3D">3D Model</button>
+    </div>
+  </div>
+
+  <div class="masonry-container" id="masonryGrid"></div>
+
+
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label hidden">Let's Talk</div>
+    <h2 class="section-title hidden">Get in <em style="font-style:italic;color:var(--accent)">Touch</em></h2>
+
+    <div class="contact-grid">
+      <div class="contact-form hidden">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="hello@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="align-self:flex-start;" onclick="alert('Message sent! (demo)')">Send Message →</button>
+      </div>
+
+      <div class="contact-info hidden">
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">fluffyishop@gmail.coms</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-item-label">Phone / LINE</div>
+            <div class="contact-item-value">+66 97-987-3711</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-value">Suin, Thailand</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🔗</div>
+          <div>
+            <div class="contact-item-label">Social</div>
+            <a class="contact-item-value" href="https://fastwork.co/user/graphase" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;cursor:pointer;">https://fastwork.co/user/graphase</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Creative.</div>
+  <div class="footer-copy">© 2025 · All Rights Reserved · Crafted with ♡</div>
+</footer>
+
+<!-- ─── LIGHTBOX ─── -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-backdrop" onclick="closeLightbox()"></div>
+  <div class="lb-panel">
+    <div class="lb-header">
+      <div class="lb-meta">
+        <div class="lb-cat" id="lbCat"></div>
+        <div class="lb-title" id="lbTitle"></div>
+      </div>
+      <button class="lb-close" onclick="closeLightbox()">✕</button>
+    </div>
+    <div class="lb-body">
+      <div class="lb-swiper" id="lbSwiper">
+        <div class="lb-slides-track" id="lbTrack"></div>
+      </div>
+      <div class="lb-nav" id="lbNav">
+        <button class="lb-nav-btn" id="lbPrev" onclick="slideMove(-1)">←</button>
+        <div class="lb-dots" id="lbDots"></div>
+        <button class="lb-nav-btn" id="lbNext" onclick="slideMove(1)">→</button>
+      </div>
+      <div class="lb-desc" id="lbDesc"></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// ─── DATA ─────────────────────────────────────────────
+const catLabels = {
+  PRODUCT: 'Product & Packaging',
+  BRANDING: 'Branding & Identity',
+  VISUAL: 'Visual & Graphic Design',
+  CREATIVE: 'Creative Arts',
+  DIGITAL: 'Digital Content',
+  '3D': '3D Model'
+};
+
+// Sample placeholder works
+let works = [
+  { id:3, title:'Timberer Catalog', cat:'VISUAL', desc:'A professional product catalog showcasing artificial wood solutions designed for contemporary interior decoration through a clean and informative visual hierarchy.', 
+  images:['Portfolio picture/timberer/1 (1) (1).webp', 'Portfolio picture/timberer/1 (1).webp', 'Portfolio picture/timberer/1 (9).webp', 'Portfolio picture/timberer/1 (10).webp', 'Portfolio picture/timberer/1 (11).webp', 'Portfolio picture/timberer/1 (12).webp', 'Portfolio picture/timberer/1 (13).webp', 'Portfolio picture/timberer/1 (14).webp', 'Portfolio picture/timberer/1 (15).webp', ], heights:[380] },
+
+  { id:9, title:'Infogaphic banner', cat:'VISUAL', desc:'Infographic work is the art of transforming complex data into clear and engaging visual stories.', 
+  images:['Portfolio picture/Inforgraphic/Infographic 1.1.webp', 'Portfolio picture/Inforgraphic/Infographic 1.2.webp'], heights:[360,320] },
+
+  { id:9, title:'Paper mockup', cat:'VISUAL', desc:'A paper mockup is a physical or digital prototype used to visualize and test a design layout before final production.', 
+  images:['Portfolio picture/Paper mockup/Mock up papers 1.1.webp', 'Portfolio picture/Paper mockup/Mock up papers 1.2.webp', 'Portfolio picture/Paper mockup/Mock up papers no picture.webp', 'Portfolio picture/Paper mockup/Mock up papers no picture 2.1.webp', 'Portfolio picture/Paper mockup/1.2.webp',
+   'Portfolio picture/Paper mockup/2.1.webp', 'Portfolio picture/Paper mockup/3.1.webp', 'Portfolio picture/Paper mockup/4.1.webp', 'Portfolio picture/Paper mockup/5.1.webp', 'Portfolio picture/Paper mockup/6.1.webp', 'Portfolio picture/Paper mockup/7.1.webp', 'Portfolio picture/Paper mockup/8.1.webp'
+  , 'Portfolio picture/Paper mockup/9.1.webp', 'Portfolio picture/Paper mockup/10.1.webp'], heights:[360,320] },
+
+  { id:9, title:'Brochure', cat:'VISUAL', desc:'Brochure work is the creation of informative printed or digital documents designed to showcase products services or brands in a structured and visually appealing format.', 
+  images:['Portfolio picture/Brochure/1 (1).webp', 'Portfolio picture/Brochure/1 (2).webp','Portfolio picture/Brochure/1 (3).webp','Portfolio picture/Brochure/1 (4).webp','Portfolio picture/Brochure/1 (5).webp',], heights:[360,320] },
+
+  { id:1, title:'Cake Packaging Elephant', cat:'PRODUCT', desc:'Softly Sweet: Vibrant & Simple Surin A cake box design blending pastel charm with cozy, hand-drawn vibes. It combines practical function with the unique identity of Surin Vocational College, creating a professional and memorable gift for every recipient.', images:['Portfolio picture/Cake packaging/1.3.webp', 'Portfolio picture/Cake packaging/1.2.webp', 'Portfolio picture/Cake packaging/1.1.webp'], heights:[320,280,310] },
+ 
+  { id:2, title:'Forstedge brading', cat:'BRANDING', desc:'The FROSTEDGE logo is designed under the concept of Sharp and Powerful Modernity translating the brand’s unique identity into a sleek visual design', images:['Portfolio picture/FORSDTED/1 (6).webp','Portfolio picture/FORSDTED/1 (1).webp', 'Portfolio picture/FORSDTED/1 (2).webp', 'Portfolio picture/FORSDTED/1 (3).webp', 'Portfolio picture/FORSDTED/1 (4).webp', 'Portfolio picture/FORSDTED/1 (5).webp'], heights:[260,300] },
+ 
+  { id:3, title:'Business card design', cat:'VISUAL', desc:'The concept focuses on a silent luxury that feels premium and composed rather than loud This is achieved through a sophisticated charcoal and gold color palette that evokes the feeling of high end brands or exclusive VIP services.', images:['Portfolio picture/Business card design/Card mockup 2.1.webp', 'Portfolio picture/Business card design/Card mockup 4.1.webp', 'Portfolio picture/Business card design/Card mockup 5.1.webp', 'Portfolio picture/Business card design/Card mockup 6.1.webp', 'Portfolio picture/Business card design/Card mockup 7.1.webp', 'Portfolio picture/Business card design/Card mockup 8.1.webp', 'Portfolio picture/Business card design/Card mockup 10.1.webp', ], heights:[380] },
+ 
+  { id:4, title:'Geisha Identity V', cat:'CREATIVE', desc:'Character profile design is a visual layout that combines character illustrations and key details to present a concise overview of a specific persona.', 
+  images:['Portfolio picture/creative art/Geisha chibi 16x9 1.1.webp','Portfolio picture/creative art/Geisha.webp'], heights:[420,350] },
+ 
+  { id:5, title:'Motion Graphics Introduction: Digital Graphics Department', cat:'DIGITAL', desc:'Instagram content series for lifestyle brand.', video:'https://youtu.be/9oxNPEKfMJQ?si=WN2sJ4NauZPANv6N', images:[''], heights:[290,310] },
+ 
+  { id:6, title:'The Garden Sanctuary Concept', cat:'3D', desc:'A peaceful garden retreat harmoniously integrated with natural landscapes and serene greenery Concept via SketchUp.', images:['Portfolio picture/The Garden Sanctuary Concept/3.33.webp', 'Portfolio picture/The Garden Sanctuary Concept/1.webp', 'Portfolio picture/The Garden Sanctuary Concept/2.webp', 'Portfolio picture/The Garden Sanctuary Concept/3.webp', 'Portfolio picture/The Garden Sanctuary Concept/4.webp', 'Portfolio picture/The Garden Sanctuary Concept/5.webp', 'Portfolio picture/The Garden Sanctuary Concept/6.webp', 'Portfolio picture/The Garden Sanctuary Concept/7.webp', 'Portfolio picture/The Garden Sanctuary Concept/8.webp', 'Portfolio picture/The Garden Sanctuary Concept/9.webp', 'Portfolio picture/The Garden Sanctuary Concept/10.webp', 'Portfolio picture/The Garden Sanctuary Concept/11.webp', 'Portfolio picture/The Garden Sanctuary Concept/12.webp', 'Portfolio picture/The Garden Sanctuary Concept/13.webp', ], heights:[340,360,300] },
+ 
+  { id:7, title:'Choaly Packaging', cat:'PRODUCT', desc:'This design pairs deep cocoa tones with elegant gold accents to reflect premium quality. The minimalist layout features a golden curve that draws the eye toward the product, creating a sophisticated and appetizing look.', images:['Portfolio picture/Chocolate cake/1.3.webp', 'Portfolio picture/Chocolate cake/1.4.webp', 'Portfolio picture/Chocolate cake/1.5.webp', 'Portfolio picture/Chocolate cake/1.6.webp'], heights:[300] },
+ 
+  { id:8, title:'LUNÉRIA Branding', cat:'BRANDING', desc:'The LUNÉRIA logo is designed under the concept of elegant and glowing beauty translating the brand unique identity into a premium visual design', images:['Portfolio picture/LUNÉRIA/1.8.webp','Portfolio picture/LUNÉRIA/1.6.webp','Portfolio picture/LUNÉRIA/1.7.webp','Portfolio picture/LUNÉRIA/1.9.webp','Portfolio picture/LUNÉRIA/1 (4).webp','Portfolio picture/LUNÉRIA/1 (1).webp','Portfolio picture/LUNÉRIA/1 (2).webp','Portfolio picture/LUNÉRIA/1 (3).webp',], heights:[270,290,260] },
+ 
+  { id:9, title:'Visual product', cat:'VISUAL', desc:'Visual Product refers to the strategic use of design elements to communicate a brand story and product features through sight It focuses on how a physical or digital product is presented to the consumer to drive engagement and sales.', images:['Portfolio picture/visualproduct/Prefume product no brand 1.1.webp', 'Portfolio picture/visualproduct/Vaseline banner1.1.webp', 'Portfolio picture/visualproduct/Easy wash clothes powder 1.1.webp', 'Portfolio picture/visualproduct/Dove shampoo banner 1.1.webp', ], heights:[360,320] },
+  
+  { id:10, title:'Jane doe from zzzz', cat:'CREATIVE', desc:'Mascot design is the process of creating a unique character to represent a brand or concept through recognizable and engaging visual traits.', 
+  images:['Portfolio picture/creative art/Jane doe zzz baner 1.1.webp','Portfolio picture/creative art/Jane doe chibi zzz.webp',], heights:[400,380] },
+ 
+  { id:11, title:'Space Tech & Smart Farming: Closing Highlights', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtu.be/6R1ylOQTdko', images:[], heights:[280,310,290] },
+
+  { id:12, title:'Balanced Learning Space by SketchUp', cat:'3D', desc:'A modern computer lab redesign focused on the balance between technology and tranquility through minimalist aesthetics.', images:['Portfolio picture/Balanced Learning Space by SketchUp/9.webp', 'Portfolio picture/Balanced Learning Space by SketchUp/1.webp', 'Portfolio picture/Balanced Learning Space by SketchUp/2.webp', 'Portfolio picture/Balanced Learning Space by SketchUp/3.webp', 'Portfolio picture/Balanced Learning Space by SketchUp/4.webp', 'Portfolio picture/Balanced Learning Space by SketchUp/5.webp', 'Portfolio picture/Balanced Learning Space by SketchUp/6.webp', 'Portfolio picture/Balanced Learning Space by SketchUp/7.webp', 'Portfolio picture/Balanced Learning Space by SketchUp/8.webp'], heights:[350,400,330] },
+ 
+  { id:7, title:'lgeno umbrella Packaging', cat:'PRODUCT', desc:'This is a clean white gable box for the LGENO UMBRELLA brand featuring a water splash graphic and a built-in carry handle for convenience The side displays color options with green purple and black circles while the overall design uses a minimalist aesthetic with blue accents and clear product branding.', images:['Portfolio picture/lgeno umbrella/1.2.webp', 'Portfolio picture/lgeno umbrella/1.3.webp', 'Portfolio picture/lgeno umbrella/1.4.webp', 'Portfolio picture/lgeno umbrella/1.5.webp', 'Portfolio picture/lgeno umbrella/1.6.webp'], heights:[300] },
+
+  { id:9, title:'Retouch', cat:'VISUAL', desc:'Retouching is the process of enhancing or altering an image to improve its overall appearance and professional quality It focuses on refining details to create a polished and flawless final result.', images:['Portfolio picture/retouch/before after 1.2.webp', 'Portfolio picture/retouch/1.1.webp',], heights:[360,320] },
+
+  { id:10, title:'Black cat oc character', cat:'CREATIVE', desc:'Original character mascot design is the creation of a unique black cat persona that reflects individual creativity and specific personality traits through custom visual elements.', 
+  images:['Portfolio picture/creative art/Black cat banner 1.1.webp','Portfolio picture/creative art/Black cat 1.1.webpp',], heights:[400,380] },
+
+  { id:11, title:'Grand Opening: Medical Education Simulation Center, Surin Hospital', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtu.be/ixPwLY9WPsA', images:[], heights:[280,310,290] },
+
+  { id:7, title:'moodgood Packaging', cat:'PRODUCT', desc:'This is a vibrant yellow and dark brown cookie box for the MOOD GOOD brand featuring high-impact visuals of chocolate chip cookies splashing into milk The front showcases a playful dynamic layout while the back provides a detailed breakdown of ingredients and nutritional information using a clean infographic style with a large barcode at the bottom.', images:['Portfolio picture/moodgood/1.4.webp', 'Portfolio picture/moodgood/1.5.webp', 'Portfolio picture/moodgood/1.6.webp'], heights:[300] },
+ 
+  { id:9, title:'Brutalism Poster', cat:'VISUAL', desc:'Brutalism Poster design is an aesthetic that prioritizes raw honesty and functionality over traditional beauty It draws inspiration from mid century architecture using bold unpolished and often harsh visual elements.', images:['Portfolio picture/Brutalism Poster/Camera and eye 1.1.webp', 'Portfolio picture/Brutalism Poster/Butterfly 1.1.webp',  'Portfolio picture/Brutalism Poster/nobility 1.1.webp','Portfolio picture/Brutalism Poster/Phobe brutalism poster 1.1.webp', 'Portfolio picture/Brutalism Poster/The cat 1.1.webp','Portfolio picture/Brutalism Poster/Brutalism Poster 1.2.webp',], heights:[360,320] },
+
+  { id:10, title:'Male Peacock Themed Original Character Design', cat:'CREATIVE', desc:'Male peacock themed character design is the artistic creation of an original persona that incorporates the vibrant colors and elegant patterns of peacock feathers into a unique visual identity.', 
+  images:['Portfolio picture/creative art/1.webp'], heights:[400,] },
+
+  { id:11, title:'Understanding UX vs. UI: A Beginner’s Guide', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtube.com/shorts/YRtlKGy0_sw?feature=share', images:[], heights:[280,310,290] },
+
+  { id:7, title:'moodgood Packaging', cat:'PRODUCT', desc:'This is a warm peach and chocolate brown macaron box for the MALCONE brand featuring a central image of stacked colorful macarons against a milk splash background The design includes a bold yellow MACARON title and a side panel showcasing a vertical variety of flavors with Thai text at the bottom right corner.', images:['Portfolio picture/macaron/1.6.webp', 'Portfolio picture/macaron/1.2.webp', 'Portfolio picture/macaron/1.3.webp', 'Portfolio picture/macaron/1.4.webp'], heights:[300] },
+ 
+  { id:9, title:'out of font', cat:'VISUAL', desc:'Out of Font design is a creative technique where typography breaks the traditional rules of alignment and boundaries It involves manipulating text so it behaves more like a graphic element than just readable information.', images:['Portfolio picture/out of font/Wutherinig wave 1.1.webp', 'Portfolio picture/out of font/shopper 1.1.webp','Portfolio picture/out of font/boxer 1.1.webp','Portfolio picture/out of font/Biker Bike 1.1.webp', 'Portfolio picture/out of font/A girl 1.1.webp',], heights:[360,320] },
+
+  { id:11, title:'Fundamental UX/UI Design', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtube.com/shorts/zFPkPsx4dIc?feature=share', images:[], heights:[280,310,290] },
+
+  { id:7, title:'Lunera Packaging', cat:'PRODUCT', desc:'An elegant lavender-toned square box designed for a 30 ml skincare product. The design focuses on a soft moon and bubble motif with the slogan "Glow Naturally, Like the Moonlight," while the side panel lists key active ingredients such as Niacinamide and Hyaluronic Acid above various certification icons.', images:['Portfolio picture/Lunera/1.2.webp', 'Portfolio picture/Lunera/1.3.webp', 'Portfolio picture/Lunera/1.6.webp', 'Portfolio picture/Lunera/1.7.webp', 'Portfolio picture/Lunera/1.8.webp'], heights:[300] },
+  
+  { id:9, title:'Menu design', cat:'VISUAL', desc:'Menu Design is the art of organizing food and drink options in a way that is both functional and visually appetizing It serves as a silent salesperson that influences customer choices through strategic layout and styling.', images:['Portfolio picture/menu design/burger menu 1.1.webp', 'Portfolio picture/menu design/Fried Chicken menu 1.1.webp', 'Portfolio picture/menu design/Pasta menu 1.1.webp', 'Portfolio picture/menu design/Pizza menu 1.1.webp', 'Portfolio picture/menu design/Sushi menu 1.1.webp'], heights:[360,320] },
+
+  { id:11, title:'Fundamental UX/UI Design EP2', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtube.com/shorts/qM-nczTw5w4?feature=share', images:[], heights:[280,310,290] },
+
+  { id:7, title:'celestique Packaging', cat:'PRODUCT', desc:'This packaging is for the CELESTIQUE brand "CTOIN-INFUSED Multiverse Sunscreen" featuring a high protection rating of SPF 50+ and PA++++', images:['Portfolio picture/celestique/1 (1).webp', 'Portfolio picture/celestique/1 (2).webp', 'Portfolio picture/celestique/1 (3).webp', 'Portfolio picture/celestique/1 (4).webp', 'Portfolio picture/celestique/1 (5).webp'], heights:[300] },
+
+  { id:9, title:'Menu design thai', cat:'VISUAL', desc:'Menu Design is the art of organizing food and drink options in a way that is both functional and visually appetizing It serves as a silent salesperson that influences customer choices through strategic layout and styling.', images:['Portfolio picture/menu design thai/Menu design 1.1.webp', 'Portfolio picture/menu design thai/puff menu 1.1.webp', 'Portfolio picture/menu design thai/noddle menu 1.1.webp', 'Portfolio picture/menu design thai/fiere food 1.1.webp', 'Portfolio picture/menu design thai/curry menu 1.1.webp'], heights:[360,320] },
+
+  { id:11, title:'Calcium Supplement Short-Form Content (TikTok Video Editing)', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtube.com/shorts/xZcH1F6SZYc?feature=share', images:[], heights:[280,310,290] },
+
+  { id:12, title:'The Synergy Hub', cat:'3D', desc:'A high-performance learning environment designed to maximize focus and workflow efficiency through a clean, streamlined layout and refreshing wood-toned aesthetics.', images:['Portfolio picture/The Synergy Hub/3.33.webp', 'Portfolio picture/The Synergy Hub/2.webp', 'Portfolio picture/The Synergy Hub/3.webp', 'Portfolio picture/The Synergy Hub/4.webp', 'Portfolio picture/The Synergy Hub/5.webp', 'Portfolio picture/The Synergy Hub/Plant.webp', 'Portfolio picture/The Synergy Hub/top view.webp', 'Portfolio picture/The Synergy Hub/1.webp', ], heights:[350,400,330] },
+
+  { id:8, title:'Barelion Branding', cat:'BRANDING', desc:'The BALERION logo is designed under the concept of professional tech consulting translating the brand unique identity into a modern and innovative visual design', images:['Portfolio picture/barelion/1 (6).webp','Portfolio picture/barelion/1 (1).webp','Portfolio picture/barelion/1 (2).webp','Portfolio picture/barelion/1 (3).webp','Portfolio picture/barelion/1 (4).webp','Portfolio picture/barelion/1 (5).webp','Portfolio picture/barelion/1 (2).webp','Portfolio picture/barelion/1 (3).webp',], heights:[270,290,260] },
+
+  { id:9, title:'top up game banner', cat:'VISUAL', desc:'Game Topup Banner design is a high energy visual created to promote in game currency services or special topup events It uses vibrant colors and gaming assets to capture the attention of players instantly.', images:['Portfolio picture/top game/1 (6).webp', 'Portfolio picture/top game/1 (1).webp', 'Portfolio picture/top game/1 (5).webp', 'Portfolio picture/top game/1 (4).webp', 'Portfolio picture/top game/1 (2).webp', 'Portfolio picture/top game/1 (3).webp'], heights:[360,320] },
+
+  { id:11, title:'Sanambinnam Real Estate District', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtube.com/shorts/44boD2LJWZo?feature=share', images:[], heights:[280,310,290] },
+
+  { id:8, title:'lol Branding', cat:'BRANDING', desc:'The LOL LAB OF LONGEVITY logo is designed under the concept of medical wellness and life extension translating the brand unique identity into a premium and trustworthy visual design.', images:['Portfolio picture/Lol/1.2.webp','Portfolio picture/Lol/1.3.webp','Portfolio picture/Lol/1.4.webp','Portfolio picture/Lol/1.5.webp','Portfolio picture/Lol/1.6.webp'], heights:[270,290,260] },  { id:8, title:'Busly Branding', cat:'BRANDING', desc:'The BUSLY brand represents a smart lifestyle of convenience and efficiency, specifically designed for modern home cooking', images:['Portfolio picture/busly/1 (13).webp','Portfolio picture/busly/1 (4).webp','Portfolio picture/busly/1 (10).webp','Portfolio picture/busly/1 (12).webp','Portfolio picture/busly/1 (1).webp'], heights:[270,290,260] },
+
+  { id:11, title:'The Ladprao Property Sector', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtube.com/shorts/tnHzEwT8FZ8?feature=share', images:[], heights:[280,310,290] },
+
+  { id:11, title:'Rama 5 Real Estate Market Landscape', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtube.com/shorts/MwPjFKiGxgM?feature=share', images:[], heights:[280,310,290] },
+
+  { id:12, title:'Apparel and Merchandise Design', cat:'3D', desc:'Apparel and merchandise design is the creation of branded clothing and accessories that feature custom graphics and logos to promote a business identity.',
+  images:['Portfolio picture/Apparel and Merchandise Design/1.webp', 'Portfolio picture/Apparel and Merchandise Design/2.webp', 'Portfolio picture/Apparel and Merchandise Design/3.webp', 'Portfolio picture/Apparel and Merchandise Design/4.webp', 'Portfolio picture/Apparel and Merchandise Design/5.webp', ], heights:[350,400,330] },
+
+  { id:11, title:'Property Development in the Mistine Area', cat:'DIGITAL', desc:'Retouching and composite for e-commerce product shots.', video:'https://youtube.com/shorts/e7kWD6YgD9I?feature=share', images:[], heights:[280,310,290] },
+
+  { id:8, title:'vendora Branding', cat:'BRANDING', desc:'The VERDORA logo is designed under the concept of eco-friendly fashion translating the brand unique identity into a sustainable and natural visual design', images:['Portfolio picture/vendora/1 (13).webp','Portfolio picture/vendora/1 (10).webp','Portfolio picture/vendora/1 (12).webp','Portfolio picture/vendora/1 (16).webp','Portfolio picture/vendora/1 (1).webp'], heights:[270,290,260] },
+
+  { id:9, title:'Double Exposure', cat:'VISUAL', desc:'Double exposure design is a creative technique that blends multiple images and geometric elements into a single artistic composition.', 
+  images:['Portfolio picture/Double Exposure/1 (2).webp','Portfolio picture/Double Exposure/1 (3).webp','Portfolio picture/Double Exposure/1 (4).webp','Portfolio picture/Double Exposure/1 (5).webp','Portfolio picture/Double Exposure/1 (1).webp',], heights:[360,320] },
+
+  { id:8, title:'Yori Branding', cat:'BRANDING', desc:'Yori Care embodies comprehensive home support through four hearts representing childcare pet care elderly assistance and housekeeping providing gentle care for every home with trust and warmth', images:['Portfolio picture/Yori care/1.1.webp', 'Portfolio picture/Yori care/Logo.webp', 'Portfolio picture/Yori care/Brochure.webp', 'Portfolio picture/Yori care/นามบัตรด้านหน้า.webp'], heights:[270,290,260] },
+
+  { id:9, title:'Thematic Vector Illustration', cat:'VISUAL', desc:'Thematic vector illustration is a creative digital artwork that uses stylized graphics and whimsical elements to tell a unique story based on a specific concept.', 
+  images:['Portfolio picture/Alice in wonderland/2.webp','Portfolio picture/Alice in wonderland/1.webp'], heights:[360,320] },
+
+];
+
+let currentFilter = 'ALL';
+
+// ─── MASONRY RENDER ─────────────────────────────────
+const colors = ['#1c1a17','#1a1c17','#171a1c','#1c171a','#1a1718','#18171c'];
+
+function renderMasonry() {
+  const grid = document.getElementById('masonryGrid');
+  const filtered = currentFilter === 'ALL' ? works : works.filter(w => w.cat === currentFilter);
+  grid.innerHTML = '';
+  filtered.forEach((work, i) => {
+    const item = document.createElement('div');
+    item.className = 'masonry-item';
+    item.style.animationDelay = (i * 0.04) + 's';
+
+    const h = work.heights[0] || 280;
+    const hasMulti = work.images.length > 1 || work.heights.length > 1;
+    const imgCount = Math.max(work.images.length, work.heights.length);
+    const hasVideo = !!work.video;
+
+    let imgHtml = '';
+    if (hasVideo) {
+      // Auto-pull YouTube thumbnail if no cover set
+      const coverSrc = work.cover || getYouTubeThumbnail(work.video) || (work.images.length > 0 ? work.images[0] : '');
+      if (coverSrc) {
+        imgHtml = `<div class="video-thumb-wrap">
+          <img src="${coverSrc}" alt="${work.title}">
+          <div class="play-btn-overlay">
+            <div class="play-btn-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d0d"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+        </div>`;
+      } else {
+        const col = colors[i % colors.length];
+        imgHtml = `<div class="video-thumb-wrap" style="min-height:${h}px;">
+          <div class="img-placeholder" style="height:${h}px;background:linear-gradient(135deg,${col},#222);">
+            <span style="font-size:0.65rem;letter-spacing:0.1em;margin-top:4px;">${work.title}</span>
+          </div>
+          <div class="play-btn-overlay">
+            <div class="play-btn-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d0d"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+        </div>`;
+      }
+    } else if (work.images.length > 0) {
+      imgHtml = `<img src="${work.images[0]}" alt="${work.title}">`;
+    } else {
+      const col = colors[i % colors.length];
+      imgHtml = `<div class="img-placeholder" style="height:${h}px;background:linear-gradient(135deg,${col},#222);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span style="font-size:0.65rem;letter-spacing:0.1em;margin-top:4px;">${work.title}</span>
+      </div>`;
+    }
+
+    item.innerHTML = `
+      ${imgHtml}
+      ${(!hasVideo && hasMulti) ? `<div class="item-multi-badge">${imgCount} images</div>` : ''}
+      ${hasVideo ? `<div class="item-multi-badge" style="background:rgba(200,169,126,0.15);color:var(--accent);">▶ Video</div>` : ''}
+      <div class="item-overlay">
+        <div class="item-cat">${catLabels[work.cat] || work.cat}</div>
+        <div class="item-title">${work.title}</div>
+      </div>
+    `;
+    item.addEventListener('click', () => openLightbox(work));
+    grid.appendChild(item);
+  });
+}
+
+// ─── FILTER ────────────────────────────────────────
+document.getElementById('filterTabs').addEventListener('click', e => {
+  if (!e.target.matches('.filter-tab')) return;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  e.target.classList.add('active');
+  currentFilter = e.target.dataset.cat;
+  renderMasonry();
+});
+
+// ─── VIDEO URL HELPERS ──────────────────────────────
+function getYouTubeId(url) {
+  const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function getVimeoId(url) {
+  const m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  return m ? m[1] : null;
+}
+
+function getEmbedUrl(url) {
+  const ytId = getYouTubeId(url);
+  if (ytId) return `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`;
+  const vmId = getVimeoId(url);
+  if (vmId) return `https://player.vimeo.com/video/${vmId}?autoplay=1`;
+  return null;
+}
+
+function getYouTubeThumbnail(url) {
+  const ytId = getYouTubeId(url);
+  return ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : null;
+}
+
+// ─── LIGHTBOX ──────────────────────────────────────
+let lbCurrent = 0;
+let lbWork = null;
+let touchStartX = 0;
+
+function openLightbox(work) {
+  lbWork = work;
+  lbCurrent = 0;
+  document.getElementById('lbCat').textContent = catLabels[work.cat] || work.cat;
+  document.getElementById('lbTitle').textContent = work.title;
+  document.getElementById('lbDesc').textContent = work.desc || '';
+
+  const track = document.getElementById('lbTrack');
+  track.innerHTML = '';
+
+  const hasVideo = !!work.video;
+
+  if (hasVideo) {
+    const embedUrl = getEmbedUrl(work.video);
+    const slide = document.createElement('div');
+    slide.className = 'lb-slide';
+    if (embedUrl) {
+      slide.innerHTML = `<div class="video-iframe-wrap">
+        <iframe src="${embedUrl}" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
+      </div>`;
+    } else {
+      slide.innerHTML = `<div class="slide-placeholder">
+        <a href="${work.video}" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;">▶ เปิดวิดีโอในแท็บใหม่</a>
+      </div>`;
+    }
+    track.appendChild(slide);
+
+    if (work.images && work.images.length > 0) {
+      work.images.forEach((src, i) => {
+        const s = document.createElement('div');
+        s.className = 'lb-slide';
+        s.innerHTML = `<img src="${src}" alt="${work.title} ${i+1}">`;
+        track.appendChild(s);
+      });
+    }
+  } else {
+    const count = Math.max(work.images.length, work.heights.length, 1);
+    for (let i = 0; i < count; i++) {
+      const slide = document.createElement('div');
+      slide.className = 'lb-slide';
+      if (work.images[i]) {
+        slide.innerHTML = `<img src="${work.images[i]}" alt="${work.title} ${i+1}">`;
+      } else {
+        slide.innerHTML = `<div class="slide-placeholder">Image ${i+1} — Upload to preview</div>`;
+      }
+      track.appendChild(slide);
+    }
+  }
+
+  const totalSlides = track.children.length;
+  buildDots(totalSlides);
+  updateSlide();
+
+  const nav = document.getElementById('lbNav');
+  nav.style.display = totalSlides > 1 ? 'flex' : 'none';
+
+  const swiper = document.getElementById('lbSwiper');
+  swiper.ontouchstart = e => { touchStartX = e.touches[0].clientX; };
+  swiper.ontouchend = e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) slideMove(dx < 0 ? 1 : -1);
+  };
+
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  // Stop iframe by blanking src
+  const iframe = document.querySelector('#lbTrack iframe');
+  if (iframe) { const s = iframe.src; iframe.src = ''; iframe.src = s; }
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function buildDots(count) {
+  const dots = document.getElementById('lbDots');
+  dots.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const d = document.createElement('div');
+    d.className = 'lb-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => { lbCurrent = i; updateSlide(); };
+    dots.appendChild(d);
+  }
+}
+
+function updateSlide() {
+  const track = document.getElementById('lbTrack');
+  track.style.transform = `translateX(-${lbCurrent * 100}%)`;
+  document.querySelectorAll('.lb-dot').forEach((d, i) =>
+    d.classList.toggle('active', i === lbCurrent));
+  const count = track.children.length;
+  document.getElementById('lbPrev').disabled = lbCurrent === 0;
+  document.getElementById('lbNext').disabled = lbCurrent === count - 1;
+}
+
+function slideMove(dir) {
+  const count = document.getElementById('lbTrack').children.length;
+  lbCurrent = Math.max(0, Math.min(count - 1, lbCurrent + dir));
+  updateSlide();
+}
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') slideMove(-1);
+  if (e.key === 'ArrowRight') slideMove(1);
+  if (e.key === 'Escape') closeLightbox();
+});
+
+
+
+// ─── NAV ACTIVE ─────────────────────────────────────
+function setActive(el) {
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Update nav on scroll
+const sections = ['home','about','resume','portfolio','contact'];
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 80;
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (scrollY >= el.offsetTop && scrollY < el.offsetTop + el.offsetHeight) {
+      document.querySelectorAll('nav a:not(.nav-logo)').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { passive: true });
+
+// ─── SCROLL REVEAL ───────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+// ─── INIT ─────────────────────────────────────────────
+renderMasonry();
+</script>
+</body>
+</html>
